@@ -1,10 +1,11 @@
 package com.isa.Backend.repository;
 
-import com.isa.Backend.model.User;
+import com.isa.Backend.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    public List<User> findByEmail(String email);
+@Repository
+public interface UserRepository extends JpaRepository<Users, Long> {
 }

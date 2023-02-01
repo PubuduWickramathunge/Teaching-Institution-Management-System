@@ -4,26 +4,26 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, length = 25)
+    @Column(name = "first_name",nullable = false, length = 25)
     private String firstName;
-    @Column(nullable = false, length = 25)
+    @Column(name = "last_name",nullable = false, length = 25)
     private String lastName;
-    @Column(unique = true,nullable = false, length = 50)
+    @Column(name = "email",unique = true,nullable = false, length = 50)
     private String email;
-    @Column(nullable = false, length = 20)
+    @Column(name = "password",nullable = false, length = 20)
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User() {
+    public Users() {
     }
 
-    public User(String firstName, String lastName, String email, String password, Role role) {
+    public Users(String firstName, String lastName, String email, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
