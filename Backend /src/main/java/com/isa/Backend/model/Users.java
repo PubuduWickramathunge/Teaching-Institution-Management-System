@@ -1,7 +1,20 @@
 package com.isa.Backend.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
 
+
+
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class Users {
@@ -20,8 +33,6 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Users() {
-    }
 
     public Users(String firstName, String lastName, String email, String password, Role role) {
         this.firstName = firstName;
