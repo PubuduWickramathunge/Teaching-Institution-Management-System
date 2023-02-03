@@ -40,9 +40,9 @@ public class Users implements UserDetails {
     private Role role;
 
 
-    public Users(String firstName, String lastName, String email, String password, Role role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Users(String firstname, String lastname, String email, String password, Role role) {
+        this.firstName = firstname;
+        this.lastName = lastname;
         this.email = email;
         this.password = password;
         this.role = role;
