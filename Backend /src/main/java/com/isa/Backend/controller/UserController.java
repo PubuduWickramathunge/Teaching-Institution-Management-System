@@ -23,6 +23,12 @@ public class UserController{
         return "index";
 
     }
+    @GetMapping("")
+    @ResponseBody
+
+    public String firstPage(){
+        return "No Password";
+    }
 
     @GetMapping("/users")
     @ResponseBody
