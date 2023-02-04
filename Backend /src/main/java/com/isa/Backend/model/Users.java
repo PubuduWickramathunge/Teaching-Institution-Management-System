@@ -34,7 +34,7 @@ public class Users implements UserDetails {
     @Column(name = "email",unique = true,nullable = false, length = 50)
     private String email;
     @lombok.Getter
-    @Column(name = "password",nullable = false, length = 20)
+    @Column(name = "password",nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
