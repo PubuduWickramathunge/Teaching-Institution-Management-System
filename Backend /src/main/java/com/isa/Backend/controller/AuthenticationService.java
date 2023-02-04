@@ -1,6 +1,5 @@
 package com.isa.Backend.controller;
 
-import com.isa.Backend.model.Role;
 import com.isa.Backend.model.Users;
 import com.isa.Backend.repository.UserRepository;
 import com.isa.Backend.security.JwtService;
@@ -19,7 +18,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest registerRequest){
+    public AuthenticationResponse register(RegisterRequest registerRequest) {
         var user = Users.builder()
                 .firstName(registerRequest.getFirstname())
                 .lastName(registerRequest.getLastname())
@@ -29,21 +28,22 @@ public class AuthenticationService {
                 .build();
 
         userRepository.save(user);
-        var jwtToken =jwtService.generateToken(user);
+        var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
 
 
     }
-    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest){
+
+    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         authenticationRequest.getEmail(),
                         authenticationRequest.getPassword()
                 )
         );
-    var user = userRepository.findByEmail(authenticationRequest.getEmail()).orElseThrow(() -> new RuntimeException("User not found"));
+        var user = userRepository.findByEmail(authenticationRequest.getEmail()).orElseThrow(() -> new RuntimeException("User not found"));
 
-        var jwtToken =jwtService.generateToken(user);
+        var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 }

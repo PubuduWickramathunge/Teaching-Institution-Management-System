@@ -8,10 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,14 +25,14 @@ public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "first_name",nullable = false, length = 25)
+    @Column(name = "first_name", nullable = false, length = 25)
     private String firstName;
-    @Column(name = "last_name",nullable = false, length = 25)
+    @Column(name = "last_name", nullable = false, length = 25)
     private String lastName;
-    @Column(name = "email",unique = true,nullable = false, length = 50)
+    @Column(name = "email", unique = true, nullable = false, length = 50)
     private String email;
     @lombok.Getter
-    @Column(name = "password",nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
