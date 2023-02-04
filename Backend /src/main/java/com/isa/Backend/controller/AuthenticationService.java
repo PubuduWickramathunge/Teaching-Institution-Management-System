@@ -6,7 +6,8 @@ import com.isa.Backend.repository.UserRepository;
 import com.isa.Backend.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.var;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest registerRequest){
         var user = Users.builder()
@@ -23,7 +25,7 @@ public class AuthenticationService {
                 .lastName(registerRequest.getLastname())
                 .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .role(Role.STUDENT)
+                .role(registerRequest.getRole())
                 .build();
 
         userRepository.save(user);
@@ -33,6 +35,15 @@ public class AuthenticationService {
 
     }
     public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest){
-        //
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        authenticationRequest.getEmail(),
+                        authenticationRequest.getPassword()
+                )
+        );
+    var user = userRepository.findByEmail(authenticationRequest.getEmail()).orElseThrow(() -> new RuntimeException("User not found"));
+
+        var jwtToken =jwtService.generateToken(user);
+        return AuthenticationResponse.builder().token(jwtToken).build();
     }
 }
