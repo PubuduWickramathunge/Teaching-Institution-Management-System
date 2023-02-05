@@ -24,10 +24,10 @@ public class ApplicationConfig {
         return username -> userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    @Bean
-    public JwtService jwtService() {
-        return new JwtService();
-    }
+//    @Bean
+//    public JwtService jwtService() {
+//        return new JwtService();
+//    }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {

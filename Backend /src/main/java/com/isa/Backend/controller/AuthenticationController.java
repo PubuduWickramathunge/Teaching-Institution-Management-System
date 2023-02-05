@@ -1,5 +1,6 @@
 package com.isa.Backend.controller;
 
+import com.isa.Backend.model.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +21,12 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest registerRequest) {
         return ResponseEntity.ok(authenticationService.authenticate(registerRequest));
     }
-
-    @GetMapping
-    public String sayHello() {
-        return "hello";
+    @GetMapping("/profile")
+    public ResponseEntity<Users> viewProfile(@RequestParam String username) {
+        return authenticationService.viewProfile(username)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
 
 }
 
