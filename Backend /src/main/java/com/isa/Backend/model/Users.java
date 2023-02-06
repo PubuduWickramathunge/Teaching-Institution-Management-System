@@ -22,8 +22,10 @@ import java.util.stream.Stream;
 @Table(name = "users")
 public class Users implements UserDetails {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     @Column(name = "first_name", nullable = false, length = 25)
     private String firstName;
@@ -36,6 +38,9 @@ public class Users implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private Student student;
 
     public Users(String firstname, String lastname, String email, String password, Role role) {
         this.firstName = firstname;
@@ -111,6 +116,7 @@ public class Users implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 
 //    public void setPassword(String password) {
 //        this.password = password;
