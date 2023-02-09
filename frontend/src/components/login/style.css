@@ -1,0 +1,59 @@
+
+  
+  
+  .ant-form-item {
+    margin: 40px;
+  }
+  
+
+
+
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+  
+  
+  
+}
+
+.loginForm{
+  background-color: rgba(3, 138, 255, 0.33);
+  box-shadow: -28px 28px 25px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+  padding: 0px 30px 10px 30px;
+  border-radius: 13px;
+
+}
+.form-input {
+  
+  height: 40px;
+  font-size: 16px;
+}
+
+.label{
+  font-size: 26px;
+}
+
+.divider{
+  border-color: black;
+  size: 3px;
+  
+}
+button{
+  padding-top: 50px;
+}
+.form-container{
+  padding: 0px ;
+  width: 550px;
+}
