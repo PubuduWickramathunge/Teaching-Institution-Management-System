@@ -1,18 +1,14 @@
 package com.isa.Backend.model;
 
-import java.util.Date;
-
-import javax.persistence.*;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.util.Date;
+
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
 @Table(name = "students")
 public class Student {
@@ -30,6 +26,16 @@ public class Student {
     private String address;
 
 
-    @OneToOne(mappedBy = "student")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private Users user;
+
+    public Student(String grade, Date dateOfBirth, String address, Users user) {
+
+        this.grade = grade;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.user = user;
+
+    }
 }
