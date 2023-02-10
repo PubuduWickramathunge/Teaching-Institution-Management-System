@@ -1,5 +1,6 @@
 package com.isa.Backend.controller;
 
+import com.isa.Backend.model.Role;
 import com.isa.Backend.model.Users;
 import com.isa.Backend.repository.UserRepository;
 import com.isa.Backend.security.JwtService;
@@ -10,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,7 +48,7 @@ public class AuthenticationService {
         var user = userRepository.findByEmail(authenticationRequest.getEmail()).orElseThrow(() -> new RuntimeException("User not found"));
 
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        return AuthenticationResponse.builder().token(jwtToken).user(user).build();
     }
 
     public Optional<Users> viewProfile(String email) {
@@ -55,6 +57,11 @@ public class AuthenticationService {
 
         return Optional.ofNullable(users);
     }
+    public List<Users> getAllUsersWithRole(Role role) {
+        return userRepository.findByRole(String.valueOf(role));
+    }
+
+
 
 }
 

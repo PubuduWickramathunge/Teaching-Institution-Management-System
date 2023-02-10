@@ -1,110 +1,138 @@
-import"./style.css";
-import {Form, Button, Input, Typography, Divider, } from "antd";
-import React, { useEffect, useState } from "react";
-import"../../../src/App.css";
+import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import {Form, Button, Input, Typography, Divider, Layout } from "antd";
+import { validationRules } from "./ValidationLogIn";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import"./style.css";
+import"../../../src/App.css";
+import TopNavBar from '../NavBar';
 
-function Login() {
+
+const Login = () => {
+    
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [form] = Form.useForm();
+    const [errorMessage, setErrorMessage] = useState("");
+    const passwordRef = useRef(null);
+
 
     const handleEmail = (event) => {
         setEmail(event.target.value)
-    }
-    const handlepassword = (event) => {
+    };
+    const handlePassword = (event) => {
         setPassword(event.target.value)
-    }
+    };
     useEffect(() => {
         if(!localStorage.getItem('token')){
-            navigate('/login')
+            navigate('/login');
 
         }
-    }, [])
+    }, []);
 
-    const login = () => {
-        console.log({email, password})
-        axios.post("http://localhost:8080/auth/login", {
-            email: email,
-            password: password
-        })
-        .then(result => {
+    const submit = async () => {
+      try {
+          form.validateFields().then(async values => {
+            const result = await axios.post("http://localhost:8080/auth/login", {
+              email,
+              password,
+            });
+        
+            localStorage.setItem("token", result.data.token);
+            localStorage.setItem("role", result.data.user.role);
+            localStorage.setItem("email", result.data.user.email);
+            localStorage.setItem("firstName", result.data.user.firstName);
+            localStorage.setItem("lastName", result.data.user.lastName);
             
-            console.log(result.data)
-            alert("success")
-            localStorage.setItem('token', result.data.token)
-            navigate('/login')
-        })
-        .catch(error => {
-            alert('service error')
-            console.log(error)
-        })
-    }
-
-    // async function login(event){
-
-    //     event.preventDefault();
+            alert("Login success");
+            passwordRef.current.value = '';
+            navigate("/dashboard/");
+            setErrorMessage("");
+            
+          }).catch((error) => {
+            setErrorMessage("Failed to log in. Please check your details and try again.");
+          });
+        } catch (error) {
+          alert("Login failed");
+          passwordRef.current.value = '';
+          console.error(error);
+        }
+      };
     
-    //     try{
-    //         console.log(email);
-    //         // await axios.post("http://localhost:8080/auth/register",
-    //         // {
-              
-    //         //     firstname: firstName,
-    //         //     lastname: lastName,
-    //         //     email: email,
-    //         //     password: password,
-    //         //     role: role
-    //         // });
-    //         // alert("user registered succesfully");
-    //         // setId("");
-    //         // setFirstName("");
-    //         // setLastName("");
-    //         // setEmail("");
-    //         // setPassword("");
-    //         // setRole("");
-
-    //     }
-    //     catch(err){
-    //         alert("user registration failed");
-    //     }
-    // }
-
-
-    return(
+      return (
+        <Layout>
+        <Layout.Header>
+          <TopNavBar />
+        </Layout.Header>
+        <Layout.Content>
         <div className="login">
-            <Form className="loginForm" labelCol={{span: 6}} wrapperCol = {{span: 18}}>
-                <Typography.Title className="title" style={{color: "royalblue"}}>Log In</Typography.Title>
-                <Form.Item className="label" name="Email" label="Email" >
-                    <Input  className="form-input" placeholder="Enter Your Email Address" value={email}
-                                onChange = {(event) =>
-                                {
-                                    setEmail(event.target.value);
-                                }}/>
-                </Form.Item>
-                <Form.Item className="form-item-label" name="Password" label="Password" style={{fontSize: 16}}>
-                    <Input.Password className="form-input" placeholder="Enter Your Password" value={password}
-                                onChange = {(event) =>
-                                {
-                                    setPassword(event.target.value);
-                                }}/>
-                </Form.Item>
-                <Form.Item wrapperCol={{span: 24}}>
-                    <Button size="large" type="primary" htmlType="submit" block onClick={login}>
-                        Log In
-                    </Button>
-                </Form.Item>
-                <Divider className="divider" >
-                    <span style={{color: "royalblue"}}>
-                        Don't have an account? <span style={{fontWeight: "bold"}}>Sign Up</span>
-                    </span>
-                </Divider>
-
-            </Form>
+          
             
-        </div>
-    );
-}
+          <Form className="login-form" labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
+            <Typography.Title style={{ color: "#1eb2a6", fontSize: "50px" }}>
+              Log In
+            </Typography.Title>
+            {errorMessage && (
+        <div className="error-message">
+          <p>{errorMessage}</p>
+        </div>)}
+            <Form.Item
+              name="email"
+              label="Email"
+              className="form-item"
+              rules={validationRules.email}
 
-export default Login;
+              
+            >
+              <Input
+                className="form-input"
+                placeholder="Enter Your Email Address"
+                value={email}
+                onChange={handleEmail}
+                
+              />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              label="Password"
+              className="form-item"
+              rules={validationRules.password}
+            >
+              <Input.Password
+                className="form-input"
+                placeholder="Enter Your Password"
+                value={password}
+                onChange={handlePassword}
+                ref={passwordRef}
+                
+              />
+            </Form.Item>
+            <Form.Item wrapperCol={{ span: 24 }}>
+              <Button
+                className="submit-button"
+                size="large"
+                type="primary"
+                block
+                onClick={submit}
+              >
+                Log In
+              </Button>
+            </Form.Item>
+            <Divider className="divider">
+              <span style={{ color: "#1eb2a6" }}>
+                Don't have an account?{" "}
+                <Link to="/login/UserRegister"> <span style={{ fontWeight: "bold", color: "#1eb2a6" }}>Sign Up</span> </Link>
+              </span>
+            </Divider>
+          </Form>
+        </div>
+        </Layout.Content>
+    </Layout>
+      );
+    };
+    
+    export default Login;
+    

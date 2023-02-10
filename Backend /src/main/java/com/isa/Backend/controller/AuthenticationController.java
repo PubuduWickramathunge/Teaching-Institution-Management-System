@@ -2,8 +2,8 @@ package com.isa.Backend.controller;
 
 import com.isa.Backend.model.Users;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,13 +24,16 @@ public class AuthenticationController {
     }
 
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest registerRequest) {
         return ResponseEntity.ok(authenticationService.authenticate(registerRequest));
     }
+
     @GetMapping("/profile")
-    public ResponseEntity<Users> viewProfile(@RequestParam String username) {
-        return authenticationService.viewProfile(username)
+    public ResponseEntity<Users> viewProfile(Authentication authentication) {
+
+
+        return authenticationService.viewProfile(authentication.getName())
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
