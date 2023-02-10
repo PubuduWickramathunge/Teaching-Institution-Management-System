@@ -1,5 +1,6 @@
 package com.isa.Backend.model;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,8 +23,10 @@ import java.util.stream.Stream;
 @Table(name = "users")
 public class Users implements UserDetails {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     @Column(name = "first_name", nullable = false, length = 25)
     private String firstName;
@@ -33,6 +36,8 @@ public class Users implements UserDetails {
     private String email;
     @Column(name = "password", nullable = false)
     private String password;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -111,6 +116,7 @@ public class Users implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 
 //    public void setPassword(String password) {
 //        this.password = password;

@@ -18,6 +18,7 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http
@@ -35,7 +36,8 @@ public class SecurityConfig {
 //                .authenticationProvider(authenticationProvider)
 //                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        http.csrf().disable();
+        http.csrf().disable().cors();
+
 
         http.authorizeRequests().antMatchers("/auth/**").permitAll();
         http.authorizeRequests().antMatchers("auth/profile").authenticated();
@@ -47,5 +49,18 @@ public class SecurityConfig {
         return http.build();
     }
 
+//    @PreAuthorize("hasRole('MANAGEMENT')")
+//    @GetMapping("/management")
+//    @ResponseBody
+//    public String admin() {
+//        return "Admin page";
+//    }
+//
+//    @PreAuthorize("hasRole('Student')")
+//    @GetMapping("/student")
+//    @ResponseBody
+//    public String user() {
+//        return "student page";
+//    }
 
 }
