@@ -1,5 +1,6 @@
 package com.isa.Backend.model;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,12 +36,11 @@ public class Users implements UserDetails {
     private String email;
     @Column(name = "password", nullable = false)
     private String password;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private Student student;
 
     public Users(String firstname, String lastname, String email, String password, Role role) {
         this.firstName = firstname;
