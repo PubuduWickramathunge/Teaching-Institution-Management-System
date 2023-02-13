@@ -9,13 +9,15 @@ import Profile from "./components/Profile";
 function RouterComponent() {
   return (
     <Routes>
-      <Route exact path="/" element={<Home/>} />
+      <Route exact path="/" element={<Dashboard/>} />
       <Route path="/login/UserRegister" element={<UserRegister/>} />
-      <Route path="/login/" element={<Login/>} />
-      <Route path="/dashboard/" element={<Dashboard/>} />
+      <Route path="/login" element={<Login/>} />
+      <Route path="/Home" element={<Home/>} />
       <Route path="/" element={<Profile/>} />
       <Route path="/profile" element={<Profile/>} />
-      <Route path="/home" element={<Home/>} />
+      <Route path="/dashboard" element={<Dashboard/>} />
+
+      
 
 
 
