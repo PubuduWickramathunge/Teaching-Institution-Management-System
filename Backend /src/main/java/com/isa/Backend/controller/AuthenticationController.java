@@ -1,5 +1,8 @@
 package com.isa.Backend.controller;
 
+import com.isa.Backend.dto.AuthenticationRequest;
+import com.isa.Backend.dto.AuthenticationResponse;
+import com.isa.Backend.dto.RegisterRequest;
 import com.isa.Backend.model.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +34,6 @@ public class AuthenticationController {
 
     @GetMapping("/profile")
     public ResponseEntity<Users> viewProfile(Authentication authentication) {
-
 
         return authenticationService.viewProfile(authentication.getName())
                 .map(ResponseEntity::ok)

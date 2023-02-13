@@ -1,5 +1,6 @@
 package com.isa.Backend.controller;
 
+import com.isa.Backend.dto.ManagementRegRequest;
 import com.isa.Backend.model.Management;
 import com.isa.Backend.service.ManagementService;
 import lombok.RequiredArgsConstructor;

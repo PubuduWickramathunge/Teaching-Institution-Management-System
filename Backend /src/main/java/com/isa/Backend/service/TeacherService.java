@@ -31,9 +31,7 @@ public class TeacherService {
     }
 
     public Teacher updateTeacher(Teacher teacher) {
-//        Users user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
-//        Student student = new Student();
-//        student.setUser(user);
+
         return teacherRepository.save(teacher);
     }
 }

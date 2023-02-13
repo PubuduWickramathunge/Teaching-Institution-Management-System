@@ -1,4 +1,4 @@
-package com.isa.Backend.security;
+package com.isa.Backend.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,5 +1,6 @@
 package com.isa.Backend.security;
 
+import com.isa.Backend.service.JwtService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

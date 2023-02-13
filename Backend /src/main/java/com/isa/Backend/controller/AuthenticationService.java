@@ -1,9 +1,12 @@
 package com.isa.Backend.controller;
 
+import com.isa.Backend.dto.AuthenticationRequest;
+import com.isa.Backend.dto.AuthenticationResponse;
+import com.isa.Backend.dto.RegisterRequest;
 import com.isa.Backend.model.Role;
 import com.isa.Backend.model.Users;
 import com.isa.Backend.repository.UserRepository;
-import com.isa.Backend.security.JwtService;
+import com.isa.Backend.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.var;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -57,10 +60,10 @@ public class AuthenticationService {
 
         return Optional.ofNullable(users);
     }
+
     public List<Users> getAllUsersWithRole(Role role) {
         return userRepository.findByRole(String.valueOf(role));
     }
-
 
 
 }

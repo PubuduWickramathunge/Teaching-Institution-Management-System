@@ -31,9 +31,7 @@ public class ManagementService {
     }
 
     public Management updateManagement(Management management) {
-//        Users user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
-//        Management management = new Management();
-//        management.setUser(user);
+
         return managementRepository.save(management);
     }
 }

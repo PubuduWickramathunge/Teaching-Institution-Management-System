@@ -1,4 +1,4 @@
-package com.isa.Backend.security;
+package com.isa.Backend.config;
 
 import com.isa.Backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,11 +23,6 @@ public class ApplicationConfig {
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
-
-//    @Bean
-//    public JwtService jwtService() {
-//        return new JwtService();
-//    }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
