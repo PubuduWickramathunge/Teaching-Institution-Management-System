@@ -1,5 +1,6 @@
 package com.isa.Backend.controller;
 
+import com.isa.Backend.dto.TeacherRegRequest;
 import com.isa.Backend.model.Teacher;
 import com.isa.Backend.service.TeacherService;
 import lombok.RequiredArgsConstructor;

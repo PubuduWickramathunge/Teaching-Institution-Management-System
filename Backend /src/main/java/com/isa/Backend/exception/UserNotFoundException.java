@@ -1,4 +1,4 @@
-package com.isa.Backend.service;
+package com.isa.Backend.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

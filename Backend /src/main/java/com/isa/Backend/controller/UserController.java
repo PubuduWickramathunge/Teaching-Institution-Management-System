@@ -1,5 +1,6 @@
 package com.isa.Backend.controller;
 
+import com.isa.Backend.exception.ProfileNotFoundException;
 import com.isa.Backend.model.Role;
 import com.isa.Backend.model.Users;
 import com.isa.Backend.repository.UserRepository;
@@ -18,7 +19,6 @@ public class UserController {
     public final AuthenticationService authenticationService;
 
 
-
     public UserController(UserRepository userRepository, AuthenticationService authenticationService) {
         this.userRepository = userRepository;
         this.authenticationService = authenticationService;
@@ -30,6 +30,7 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
     @GetMapping("/students")
     public ResponseEntity<List<Users>> getAllStudents() {
         List<Users> students = authenticationService.getAllUsersWithRole(Role.STUDENT);

@@ -1,4 +1,4 @@
-package com.isa.Backend.controller;
+package com.isa.Backend.dto;
 
 import com.isa.Backend.model.Users;
 import lombok.AllArgsConstructor;

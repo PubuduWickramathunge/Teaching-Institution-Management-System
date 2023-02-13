@@ -31,22 +31,10 @@ public class StudentService {
     }
 
     public Student updateStudent(Student student) {
-//        Users user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
-//        Student student = new Student();
-//        student.setUser(user);
         return studentRepository.save(student);
     }
 }
 
-//    public Student updateStudent(Student updatedStudent) {
-//        var student = Student.builder()
-//                .grade(updatedStudent.getGrade())
-//                .dateOfBirth(updatedStudent.getDateOfBirth())
-//                .address(updatedStudent.getAddress())
-//                .build();
-//
-//        return studentRepository.save(student);
-//
-//    }
+
 
 

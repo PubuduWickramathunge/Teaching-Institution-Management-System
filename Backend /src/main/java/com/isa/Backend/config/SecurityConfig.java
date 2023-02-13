@@ -1,5 +1,6 @@
-package com.isa.Backend.security;
+package com.isa.Backend.config;
 
+import com.isa.Backend.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,46 +22,17 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .csrf()
-//                .disable()
-//                .authorizeHttpRequests()
-//                .antMatchers("/auth/**")
-//                .permitAll()
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authenticationProvider(authenticationProvider)
-//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.csrf().disable().cors();
 
 
         http.authorizeRequests().antMatchers("/auth/**").permitAll();
         http.authorizeRequests().antMatchers("auth/profile").authenticated();
-
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authenticationProvider(authenticationProvider);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
-//    @PreAuthorize("hasRole('MANAGEMENT')")
-//    @GetMapping("/management")
-//    @ResponseBody
-//    public String admin() {
-//        return "Admin page";
-//    }
-//
-//    @PreAuthorize("hasRole('Student')")
-//    @GetMapping("/student")
-//    @ResponseBody
-//    public String user() {
-//        return "student page";
-//    }
 
 }

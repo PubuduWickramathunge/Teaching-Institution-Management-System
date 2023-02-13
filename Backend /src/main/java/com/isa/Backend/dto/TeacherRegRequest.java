@@ -1,4 +1,4 @@
-package com.isa.Backend.controller;
+package com.isa.Backend.dto;
 
 import com.isa.Backend.model.Users;
 import lombok.AllArgsConstructor;
@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentRegRequest {
-    private String grade;
+public class TeacherRegRequest {
+    private String subject;
     private String dateOfBirth;
-    private String address;
+    private String mobile;
     private Users user;
 
 }
-
-

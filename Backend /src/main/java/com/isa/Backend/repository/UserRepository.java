@@ -1,6 +1,5 @@
 package com.isa.Backend.repository;
 
-import com.isa.Backend.model.Role;
 import com.isa.Backend.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +13,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<Users, Long> {
 
     Optional<Users> findByEmail(String email);
-//    Optional<Users> findById(Long id);
+
+    //    Optional<Users> findById(Long id);
     @Query(value = "SELECT * FROM users WHERE role = :role", nativeQuery = true)
     List<Users> findByRole(@Param("role") String role);
 }

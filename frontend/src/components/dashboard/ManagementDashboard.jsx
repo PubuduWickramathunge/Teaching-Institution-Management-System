@@ -18,6 +18,11 @@ const columns = [
     dataIndex: "email",
     key: "email",
   },
+  {
+    title: "Subject",
+    dataIndex: "null",
+    key: "null",
+  },
 ];
 
 const AdminPage = () => {
