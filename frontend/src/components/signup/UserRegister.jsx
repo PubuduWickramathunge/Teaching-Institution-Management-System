@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Form, Button, Input, Radio, Typography, Divider} from "antd";
+import {Form, Button, Input, Radio, Typography, Divider, message} from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { validationRules } from "./ValidationSignUp";
 import { Layout } from 'antd';
@@ -38,7 +38,7 @@ const UserRegister = () => {
               password: password,
               role: role
             });
-            alert("Registration complete. Please log in.");
+            message.success("Registration complete. Please sign in")
             setFirstName("");
             setLastName("");
             setEmail("");
@@ -52,7 +52,7 @@ const UserRegister = () => {
             setErrorMessage("Failed to register. Please check your details and try again.");
           });
       } catch (error) {
-        alert("user registration failed");
+        message.error("user registration failed!")
       }
     };
     

@@ -4,9 +4,7 @@ import { Outlet } from "react-router-dom";
 import { Button, Space, Typography } from 'antd';
 import { Layout } from 'antd';
 import TopNavBar from '../NavBar';
-import ManagementDashboard from "../dashboard/ManagementDashboard";
-import StudentDashboard from "../dashboard/StudentDashboard";
-import TeacherDashboard from "../dashboard/TeacherDashboard";
+
 import "./home.css"
 
 function Home() {
@@ -18,9 +16,9 @@ function Home() {
     </Layout.Header>
     <Layout.Content>
     <div>
-      <section className="home">
-        <div className="container">
-          <div className="row">
+      <section className="home" >
+        <div className="container" >
+          <div className="row" >
             <Typography className="title">WELLCOME TO BEST INSTITUTION MANAGEMENT SYSTEM</Typography>
             <p className="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum dolore placeat, inventore, commodi quis illo eius amet corporis voluptate cupiditate, odio expedita! Id aspernatur omnis, ut aliquam neque in.</p>
             <div>

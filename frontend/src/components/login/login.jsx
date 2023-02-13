@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import {Form, Button, Input, Typography, Divider, Layout } from "antd";
+import {Form, Button, Input, Typography, Divider, Layout, message} from "antd";
 import { validationRules } from "./ValidationLogIn";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -47,7 +47,7 @@ const Login = () => {
             localStorage.setItem("firstName", result.data.user.firstName);
             localStorage.setItem("lastName", result.data.user.lastName);
             
-            alert("Login success");
+            message.success("You have successfully logged in!");
             passwordRef.current.value = '';
             navigate("/dashboard/");
             setErrorMessage("");
@@ -56,7 +56,7 @@ const Login = () => {
             setErrorMessage("Failed to log in. Please check your details and try again.");
           });
         } catch (error) {
-          alert("Login failed");
+          message.error("log in failed")
           passwordRef.current.value = '';
           console.error(error);
         }
