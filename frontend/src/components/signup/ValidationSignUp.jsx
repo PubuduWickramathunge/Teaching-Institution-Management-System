@@ -12,6 +12,10 @@ export const validationRules = {
             whitespace: true,
             message: "First name cannot be empty"
         },
+        {
+            pattern: /^[A-Za-z\s]+$/,
+            message: "First name should only contain alphabets and spaces",
+        },
     ],
     
     lastName: [
@@ -22,6 +26,10 @@ export const validationRules = {
         {
             whitespace: true,
             message: "First name cannot be empty"
+        },
+        {
+            pattern: /^[A-Za-z\s]+$/,
+            message: "Last name should only contain alphabets and spaces",
         },
     ],
     
