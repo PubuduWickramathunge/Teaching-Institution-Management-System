@@ -41,13 +41,13 @@ public class Users implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
-    public Users(String firstname, String lastname, String email, String password, Role role) {
-        this.firstName = firstname;
-        this.lastName = lastname;
-        this.email = email;
-        this.password = password;
-        this.role = role;
+    public Users(Users user) {
+        this.id = user.getId();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.role = user.getRole();
     }
 
     @Override

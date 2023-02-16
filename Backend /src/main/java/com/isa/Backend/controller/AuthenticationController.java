@@ -4,6 +4,7 @@ import com.isa.Backend.dto.AuthenticationRequest;
 import com.isa.Backend.dto.AuthenticationResponse;
 import com.isa.Backend.dto.RegisterRequest;
 import com.isa.Backend.model.Users;
+import com.isa.Backend.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -11,25 +12,20 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("auth")
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest registerRequest) {
-        AuthenticationResponse authResponse = authenticationService.register(registerRequest);
-        Users user = authenticationService.viewProfile(registerRequest.getEmail()).get();
-
-        authResponse.setUser(user);
-
-        return ResponseEntity.ok(authResponse);
+        return ResponseEntity.ok(authenticationService.register(registerRequest));
     }
 
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest registerRequest) {
-        return ResponseEntity.ok(authenticationService.authenticate(registerRequest));
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+        return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
     }
 
     @GetMapping("/profile")
@@ -40,5 +36,5 @@ public class AuthenticationController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-}
 
+}

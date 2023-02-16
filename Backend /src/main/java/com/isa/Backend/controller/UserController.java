@@ -1,17 +1,20 @@
 package com.isa.Backend.controller;
 
-import com.isa.Backend.exception.ProfileNotFoundException;
 import com.isa.Backend.model.Role;
 import com.isa.Backend.model.Users;
 import com.isa.Backend.repository.UserRepository;
+import com.isa.Backend.service.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @Controller
+@RestController
+@RequestMapping("/getAll")
 
 public class UserController {
 
@@ -24,12 +27,7 @@ public class UserController {
         this.authenticationService = authenticationService;
     }
 
-    @GetMapping("/profile")
-    public ResponseEntity<Users> viewProfile(@RequestParam String email) throws ProfileNotFoundException {
-        return authenticationService.viewProfile(email)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
+
 
     @GetMapping("/students")
     public ResponseEntity<List<Users>> getAllStudents() {
@@ -41,7 +39,24 @@ public class UserController {
     public ResponseEntity<List<Users>> getAllTeachers() {
         List<Users> teachers = authenticationService.getAllUsersWithRole(Role.TEACHER);
         return ResponseEntity.ok(teachers);
+
     }
+
+    @GetMapping("/managers")
+    public ResponseEntity<List<Users>> getAllManagers() {
+        List<Users> managers = authenticationService.getAllUsersWithRole(Role.MANAGEMENT);
+        return ResponseEntity.ok(managers);
+
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<Users>> getAllUsers() {
+        List<Users> users = authenticationService.getAllUsers();
+        return ResponseEntity.ok(users);
+
+    }
+
+
 
 
 }

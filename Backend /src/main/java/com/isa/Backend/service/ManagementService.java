@@ -1,37 +1,20 @@
 package com.isa.Backend.service;
 
-import com.isa.Backend.model.Management;
-import com.isa.Backend.repository.ManagementRepository;
-import com.isa.Backend.repository.UserRepository;
+import com.isa.Backend.dto.AuthenticationResponse;
+import com.isa.Backend.dto.RegisterRequest;
+import com.isa.Backend.model.Role;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ManagementService {
+    private final AuthenticationService authenticationService;
 
-    private final ManagementRepository managementRepository;
-    private final UserRepository userRepository;
 
-    public ManagementService(ManagementRepository managementRepository, UserRepository userRepository) {
-        this.managementRepository = managementRepository;
-        this.userRepository = userRepository;
-    }
-
-    public Management createManagement(Management management) {
-        return managementRepository.save(management);
-    }
-
-    public Management getManagementById(Long id) {
-        return managementRepository.findById(id).orElse(null);
-    }
-
-    public List<Management> getAllManagement() {
-        return managementRepository.findAll();
-    }
-
-    public Management updateManagement(Management management) {
-
-        return managementRepository.save(management);
+    public AuthenticationResponse  addManager(RegisterRequest registerRequest) {
+        registerRequest.setRole(Role.MANAGEMENT);
+        return authenticationService.register(registerRequest);
     }
 }
