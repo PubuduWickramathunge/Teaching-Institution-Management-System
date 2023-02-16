@@ -8,9 +8,13 @@ function LogoutButton() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("role");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("firstName");
     setLoggedOut(true);
     message.success("You have successfully logged out");
-    navigate("/login/")
+    navigate("/login/");
   };
 
   return (

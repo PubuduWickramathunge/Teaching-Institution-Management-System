@@ -14,10 +14,10 @@ const Login = () => {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-    const [form] = Form.useForm();
     const [errorMessage, setErrorMessage] = useState("");
     const passwordRef = useRef(null);
+    const navigate = useNavigate();
+    const [form] = Form.useForm();
 
 
     const handleEmail = (event) => {
@@ -124,7 +124,7 @@ const Login = () => {
             <Divider className="divider">
               <span style={{ color: "#1eb2a6" }}>
                 Don't have an account?{" "}
-                <Link to="/login/UserRegister"> <span style={{ fontWeight: "bold", color: "#1eb2a6" }}>Sign Up</span> </Link>
+                <Link to="/login/user-register"> <span style={{ fontWeight: "bold", color: "#1eb2a6" }}>Sign Up</span> </Link>
               </span>
             </Divider>
           </Form>

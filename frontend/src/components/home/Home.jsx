@@ -27,7 +27,7 @@ function Home() {
                   <i>LOG IN</i>
                 </Button>
               </Link>
-              <Link to="/login/UserRegister">
+              <Link to="/login/user-register">
                 <Button className="home-button" type="primary" size="large">
                   <i>CREATE AN ACCOUNT</i>
                 </Button>

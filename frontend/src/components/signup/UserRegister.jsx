@@ -49,7 +49,11 @@ const UserRegister = () => {
             navigate("/login");
           })
           .catch(error => {
-            setErrorMessage("Failed to register. Please check your details and try again.");
+            if (error.response.status === 409) {
+                setErrorMessage("A user with this email address already exists.");
+              } else {
+                setErrorMessage("Failed to register. Please check your details and try again.");
+              }
           });
       } catch (error) {
         message.error("user registration failed!")
@@ -131,13 +135,14 @@ const UserRegister = () => {
                                 }}>
                                 <Radio value = "STUDENT"> Student </Radio>
                                 <Radio value = "TEACHER">Teacher </Radio>
-                                <Radio value = "MANAGEMENT">Management </Radio>
+                                
+                                
                             </Radio.Group>
                             </Form.Item>
 
                             <Form.Item wrapperCol={{span: 24}}><Link to="/login">
                                 <Button className="submit-button" size="large" type="primary" htmlType="submit" onClick={handleSave} block>
-                                    Next
+                                    Register
                                 </Button></Link>
                             </Form.Item>
                             <Divider className="divider">
