@@ -1,6 +1,8 @@
 package com.isa.Backend.exception;
 
-public class ProfileNotFoundException extends Throwable {
-    public ProfileNotFoundException(String s) {
+public class ProfileNotFoundException extends RuntimeException {
+    public ProfileNotFoundException(String email) {
+
+        super("Profile not found for email: " + email);
     }
 }
