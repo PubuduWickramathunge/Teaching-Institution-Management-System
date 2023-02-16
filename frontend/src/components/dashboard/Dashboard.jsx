@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [role, setRole] = useState("");
 
   useEffect(() => {
-    // Get the role of the logged-in user from local storage
+    
     const token = localStorage.getItem("token");
     console.log(token)
     if (!token) {
@@ -30,7 +30,7 @@ const Dashboard = () => {
     return <div>Loading...</div>;
   }
 
-  // Render the appropriate home page based on the user's role
+
   switch (role) {
     case "MANAGEMENT":
       return <ManagementDashboard />;
