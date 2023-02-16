@@ -1,6 +1,6 @@
 package com.isa.Backend;
 
-import com.isa.Backend.controller.AuthenticationService;
+import com.isa.Backend.service.AuthenticationService;
 import com.isa.Backend.dto.RegisterRequest;
 import com.isa.Backend.model.Role;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +14,16 @@ public class DatabaseLoader {
 
     @Bean
     public void loadSampleData() {
+        authenticationService.register(
+                new RegisterRequest(
+                        "Pubudu",
+                        "Wickramathunge",
+                        "pwick@gmail.com",
+                        "Zxcvbnm99",
+                        Role.MANAGEMENT
+                )
+        );
+
         authenticationService.register(
                 new RegisterRequest(
                         "Kamal",
