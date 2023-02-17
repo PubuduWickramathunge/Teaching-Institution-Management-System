@@ -27,21 +27,20 @@ public class SecurityConfig {
 
         http.csrf().disable().cors();
 
-        http.cors().and().logout().logoutUrl("/auth/logout").logoutSuccessUrl("/auth/logout#success")
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK));
-
+        http.logout().permitAll();
+        http.logout().logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
         http.authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/auth/profile").authenticated()
                 .antMatchers("/manager/addmanager").hasAuthority("MANAGEMENT")
+                .antMatchers("/getAll/**").hasAuthority("MANAGEMENT")
                 .anyRequest().permitAll();
+
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authenticationProvider(authenticationProvider);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
 
         return http.build();
     }
