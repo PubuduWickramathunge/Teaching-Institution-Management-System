@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Table, Tag, Space, Layout, Button } from "antd";
 import TopNavBar from '../NavBar';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./dashboard.css"
+import jwt_decode from "jwt-decode";
 
 const columns = [
   {
@@ -34,24 +35,44 @@ const ManagementDashboard = () => {
   const [managers, setManagers] = useState([]);
   const [users, setUsers] = useState([]);
   const [selected, setSelected] = useState("users");
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+  
 
   useEffect(() => {
-    fetch("http://localhost:8080/getAll/students")
+    if (!token || isTokenExpired(token)) {
+      navigate("/login");
+    } else {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch("http://localhost:8080/getAll/students",options)
       .then((response) => response.json())
       .then((data) => setStudents(data));
 
-      fetch("http://localhost:8080/getAll/teachers")
+      fetch("http://localhost:8080/getAll/teachers",options)
       .then((response) => response.json())
       .then((data) => setTeachers(data));
 
-      fetch("http://localhost:8080/getAll/managers")
+      fetch("http://localhost:8080/getAll/managers",options)
       .then((response) => response.json())
       .then((data) => setManagers(data));
 
-      fetch("http://localhost:8080/getAll/users")
+      fetch("http://localhost:8080/getAll/users",options)
       .then((response) => response.json())
       .then((data) => setUsers(data));
-  }, []);
+  }
+  }, [token, navigate]);
+
+  const isTokenExpired = (token) => {
+    const decodedToken = jwt_decode(token);
+    const currentTime = Date.now() / 1000;
+    return decodedToken.exp < currentTime;
+  }
 
   const handleStudentButtonClick = () => {
     setSelected("students");
@@ -84,6 +105,7 @@ const ManagementDashboard = () => {
     dataSource = users;
     tableTitle = "List of Users";
   }
+  
 
   return (
     <Layout>
