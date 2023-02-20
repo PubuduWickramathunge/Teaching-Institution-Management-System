@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Table, Tag, Space, Layout, Card } from "antd";
 import "./Dashboard";
-import "./dashboard.css"
+import "./dashboard.css";
 
-import TopNavBar from '../NavBar';
+import TopNavBar from "../NavBar";
 
 const columns = [
   {
@@ -36,7 +36,6 @@ const StudentDashboard = () => {
       </Layout.Header>
       <Layout.Content>
         <div style={{ padding: "50px" }}>
-          
           <div className="dashboard-cards-container">
             <Card title="Courses" className="dashboard-card">
               <p className="dashboard-card-data">5</p>
@@ -51,7 +50,7 @@ const StudentDashboard = () => {
               <p className="dashboard-card-label">GPA</p>
             </Card>
           </div>
-          
+
           <h2 style={{ color: "#1eb2a6" }}>Overview</h2>
           <Table
             style={{ borderBlockEndWidth: "5px", marginTop: 50 }}

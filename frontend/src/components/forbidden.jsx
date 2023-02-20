@@ -1,6 +1,6 @@
-import React from 'react';
-import { Result, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Result, Button } from "antd";
+import { Link } from "react-router-dom";
 
 const ForbiddenPage = () => {
   return (

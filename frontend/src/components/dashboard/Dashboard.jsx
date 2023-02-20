@@ -9,9 +9,8 @@ const Dashboard = () => {
   const [role, setRole] = useState("");
 
   useEffect(() => {
-    
     const token = localStorage.getItem("token");
-    console.log(token)
+    console.log(token);
     if (!token) {
       navigate("/login");
       return;
@@ -30,7 +29,6 @@ const Dashboard = () => {
     return <div>Loading...</div>;
   }
 
-
   switch (role) {
     case "MANAGEMENT":
       return <ManagementDashboard />;
@@ -40,8 +38,7 @@ const Dashboard = () => {
       return <TeacherDashboard />;
     default:
       return <div>Invalid role</div>;
-  
+  }
 };
-}
 
 export default Dashboard;

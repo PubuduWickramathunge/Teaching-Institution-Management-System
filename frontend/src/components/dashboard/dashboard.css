@@ -1,37 +1,35 @@
 .dashboard-cards-container {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 100px;
-  }
-  
-  .dashboard-card {
-    width: 25%;
-    margin: 0 16px;
-  }
-  
-  .dashboard-card-data {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .dashboard-card-label {
-    text-align: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 100px;
+}
 
-  .card {
-    width: 80%;
-    margin: auto;
-    margin-bottom: 20px;
-    padding: 10px;
-  }
-  
-  .card h2 {
-    color: #1eb2a6;
-  }
-  
-  .home-button {
-    margin-top: 10px;
-  }
-  
-  
+.dashboard-card {
+  width: 25%;
+  margin: 0 16px;
+}
+
+.dashboard-card-data {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.dashboard-card-label {
+  text-align: center;
+}
+
+.card {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.card h2 {
+  color: #1eb2a6;
+}
+
+.home-button {
+  margin-top: 10px;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 function LogoutButton() {
   const [loggedOut, setLoggedOut] = useState(false);
@@ -9,8 +9,8 @@ function LogoutButton() {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:8080/logout');
-      console.log("logged out inside")
+      await axios.get("http://localhost:8080/logout");
+      console.log("logged out inside");
       localStorage.removeItem("token");
       localStorage.removeItem("email");
       localStorage.removeItem("role");
@@ -30,7 +30,7 @@ function LogoutButton() {
       {loggedOut ? (
         <p>You have successfully logged out</p>
       ) : (
-        <Button danger onClick={handleLogout} >
+        <Button danger onClick={handleLogout}>
           Logout
         </Button>
       )}

@@ -1,14 +1,8 @@
+.ant-form-item {
+  margin: 40px;
+}
 
-  
-  
-  .ant-form-item {
-    margin: 40px;
-  }
-  
-
-
-
-.login{
+.login {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,52 +10,45 @@
   height: 100vh;
 }
 
-
-.title{
+.title {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 50px;
-  
-  
-  
 }
 
-.login-form{
+.login-form {
   /* background-color: #E1F5E1; */
   box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(3px);
   padding: 0px 30px 10px 30px;
   border-radius: 13px;
-
 }
 .form-input {
-  
   height: 40px;
   font-size: 16px;
 }
 
-.label{
+.label {
   font-size: 26px;
 }
 
-.divider{
+.divider {
   border-color: black;
   size: 3px;
-  
 }
-.submit-button{
+.submit-button {
   padding-top: 50px;
-      
+
   background-color: #1eb2a6;
   font-weight: 600;
 }
-.form-container{
-  padding: 0px ;
+.form-container {
+  padding: 0px;
   width: 550px;
 }
 
-.title{
+.title {
   font-size: 10px;
 }
 
@@ -70,7 +57,6 @@
   font-size: 40px !important;
 }
 
-.error-message{
+.error-message {
   color: red;
-  
 }
