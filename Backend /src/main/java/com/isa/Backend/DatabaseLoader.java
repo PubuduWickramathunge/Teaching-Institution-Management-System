@@ -1,8 +1,8 @@
 package com.isa.Backend;
 
-import com.isa.Backend.service.AuthenticationService;
 import com.isa.Backend.dto.RegisterRequest;
 import com.isa.Backend.model.Role;
+import com.isa.Backend.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

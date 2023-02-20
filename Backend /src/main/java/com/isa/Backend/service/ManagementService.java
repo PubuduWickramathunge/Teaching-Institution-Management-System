@@ -13,7 +13,7 @@ public class ManagementService {
     private final AuthenticationService authenticationService;
 
 
-    public AuthenticationResponse  addManager(RegisterRequest registerRequest) {
+    public AuthenticationResponse addManager(RegisterRequest registerRequest) {
         registerRequest.setRole(Role.MANAGEMENT);
         return authenticationService.register(registerRequest);
     }

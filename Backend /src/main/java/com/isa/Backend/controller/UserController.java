@@ -28,7 +28,6 @@ public class UserController {
     }
 
 
-
     @GetMapping("/students")
     public ResponseEntity<List<Users>> getAllStudents() {
         List<Users> students = authenticationService.getAllUsersWithRole(Role.STUDENT);
@@ -55,8 +54,6 @@ public class UserController {
         return ResponseEntity.ok(users);
 
     }
-
-
 
 
 }

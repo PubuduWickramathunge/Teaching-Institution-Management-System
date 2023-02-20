@@ -1,6 +1,5 @@
 package com.isa.Backend.model;
 
-import com.isa.Backend.model.Users;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

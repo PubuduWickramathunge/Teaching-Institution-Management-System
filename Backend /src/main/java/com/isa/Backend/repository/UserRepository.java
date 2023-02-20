@@ -22,5 +22,4 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     List<Users> findAll();
 
 
-
 }
