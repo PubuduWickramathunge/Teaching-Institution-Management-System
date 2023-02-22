@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Backend_.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Backend_.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Teaching-Institution-Management-System.iml" filepath="$PROJECT_DIR$/.idea/Teaching-Institution-Management-System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.isa.Backend_.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.isa.Backend_.main.iml" />
     </modules>
   </component>
 </project>
