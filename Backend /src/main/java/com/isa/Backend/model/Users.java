@@ -41,15 +41,6 @@ public class Users implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Users(Users user) {
-        this.id = user.getId();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.role = user.getRole();
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Stream.of(role)

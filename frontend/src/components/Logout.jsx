@@ -9,8 +9,13 @@ function LogoutButton() {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:8080/logout");
-      console.log("logged out inside");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+      await axios.put("http://localhost:8080/auth/logout",null, config);
       localStorage.removeItem("token");
       localStorage.removeItem("email");
       localStorage.removeItem("role");
@@ -22,6 +27,7 @@ function LogoutButton() {
     } catch (error) {
       console.log(error);
       message.error("Failed to logout");
+      
     }
   };
 
