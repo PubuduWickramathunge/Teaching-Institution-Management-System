@@ -44,7 +44,6 @@ public class AuthenticationController {
 
     @PutMapping("/logout")
     public ResponseEntity<Void> logout() {
-        System.out.println("triggered");
         String jwt = userRequestScopedBean.getJwt();
         blackListingService.blackListJwt(jwt);
         userRequestScopedBean.setJwt(null);
