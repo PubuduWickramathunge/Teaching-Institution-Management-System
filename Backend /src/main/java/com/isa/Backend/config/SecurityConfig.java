@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .antMatchers("/auth/profile").authenticated()
                 .antMatchers("/manager/addmanager").hasAuthority("MANAGEMENT")
                 .antMatchers("/getAll/**").hasAuthority("MANAGEMENT")
+                .antMatchers("/courses/add-course").hasAuthority("MANAGEMENT")
                 .anyRequest().permitAll();
 
 

@@ -21,4 +21,5 @@ public class ManagementController {
     public ResponseEntity<?> addManager(@RequestBody RegisterRequest registerRequest) {
         return ResponseEntity.ok(managementService.addManager(registerRequest));
     }
+
 }

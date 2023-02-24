@@ -1,5 +1,6 @@
 package com.isa.Backend.config;
 
+import com.isa.Backend.repository.CourseRepository;
 import com.isa.Backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfig {
 
     private final UserRepository userRepository;
+    private final CourseRepository courseRepository;
+
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -42,5 +45,7 @@ public class ApplicationConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
 
 }
