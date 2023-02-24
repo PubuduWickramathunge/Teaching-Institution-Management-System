@@ -7,6 +7,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Profile from "./components/Profile";
 import AddManager from "./components/AddManager";
 import ForbiddenPage from "./components/forbidden";
+import AddCourse from "./components/course/AddCourse";
 
 function RouterComponent() {
   return (
@@ -20,6 +21,7 @@ function RouterComponent() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/add-manager" element={<AddManager />} />
       <Route path="/forbidden" element={<ForbiddenPage />} />
+      <Route path="/add-course" element={<AddCourse />} />
     </Routes>
   );
 }
