@@ -3,7 +3,9 @@ package com.isa.Backend.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -25,8 +27,8 @@ public class Course {
     @JoinColumn(name = "teacher_id")
     private Users teacher;
 
-    @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
-    private List<Users> students;
+    @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Users> students = new HashSet<>();
 
     public Course(String name, String description, Users teacher) {
         this.name = name;
