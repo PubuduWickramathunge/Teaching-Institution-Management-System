@@ -16,6 +16,10 @@ public class CourseResponse {
     private String description;
     private UserResponse teacher;
 
+    public CourseResponse(String message) {
+
+    }
+
     public static CourseResponse fromCourse(Course course) {
         return CourseResponse.builder()
                 .id(course.getId())
