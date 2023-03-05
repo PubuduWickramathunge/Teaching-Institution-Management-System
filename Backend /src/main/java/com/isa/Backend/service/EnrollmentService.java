@@ -7,9 +7,13 @@ import com.isa.Backend.model.Users;
 import com.isa.Backend.repository.CourseRepository;
 import com.isa.Backend.repository.EnrollmentRepository;
 import com.isa.Backend.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.persistence.EmbeddedId;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -56,15 +60,6 @@ public class EnrollmentService {
         }
     }
 
-    public Set<Course> getAllCoursesForStudent(String name) {
-        Optional<Users> studentOptional = userRepository.findByEmail(name);
 
-        if (studentOptional.isPresent()) {
-            Users student = studentOptional.get();
-            return student.getCourses();
-        }
-
-        return null;
-    }
 
 }
