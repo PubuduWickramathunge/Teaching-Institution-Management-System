@@ -81,9 +81,10 @@ const AddManager = () => {
         <TopNavBar />
       </Layout.Header>
       <Layout.Content>
-        <div className="login">
-          <header className="login-form">
+        <div className="form">
+          <header className="normal-form">
             <div className="form-container">
+              
               <Form
                 autoComplete="off"
                 labelCol={{ span: 8 }}
@@ -94,6 +95,7 @@ const AddManager = () => {
                 >
                   Add Manager
                 </Typography.Title>
+                
                 {errorMessage && (
                   <div className="error-message">
                     <p>{errorMessage}</p>
