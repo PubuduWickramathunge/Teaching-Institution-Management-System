@@ -24,7 +24,7 @@ public class Course {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "teacher_id")
+    @JoinColumn(name = "teacher_id", unique = true)
     private Users teacher;
 
     @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
