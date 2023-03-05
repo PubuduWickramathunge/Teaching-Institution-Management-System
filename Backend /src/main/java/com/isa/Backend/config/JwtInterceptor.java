@@ -31,6 +31,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         try {
             String token = request.getHeader("Authorization");
             if (token == null || !token.startsWith("Bearer ")) {
+                System.out.println(token);
                 throw new InvalidTokenFormatException("Invalid token format: " + token);
             }
 

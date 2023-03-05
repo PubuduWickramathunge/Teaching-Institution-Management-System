@@ -148,6 +148,11 @@ const ManagementDashboard = () => {
               <i>Add New Manager</i>
             </Button>
           </Link>
+          <Link to="/add-course">
+            <Button className="home-button" type="default" size="large">
+              <i>Add New course</i>
+            </Button>
+          </Link>
           <h2 style={{ color: "#1eb2a6" }}>{tableTitle}</h2>
           <Table dataSource={dataSource} columns={columns} />
         </div>
