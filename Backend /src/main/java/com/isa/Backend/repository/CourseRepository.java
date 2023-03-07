@@ -12,5 +12,6 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     Course save(Course course);
     List<Course> findByTeacherId(Long teacherId);
     Optional<Course> findByIdAndTeacherId(Long id, Long teacherId);
+    List<Course> findByNameContainingIgnoreCase(String name);
 
 }
