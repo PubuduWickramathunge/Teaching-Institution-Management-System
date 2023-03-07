@@ -32,7 +32,7 @@ public class EnrollmentService {
         this.userRepository = userRepository;
     }
 
-    public void enrollStudent(Long courseId, String studentName) {
+    public void enrollStudent(Long courseId, String studentName) throws Exception {
         Optional<Course> courseOptional = courseRepository.findById(courseId);
         Optional<Users> studentOptional = userRepository.findByEmail(studentName);
 
@@ -40,6 +40,11 @@ public class EnrollmentService {
             Course course = courseOptional.get();
             Users student = studentOptional.get();
             Set<Course> courses = student.getCourses();
+
+            if (courses.contains(course)) {
+                throw new Exception("You have already enrolled in the course.");
+            }
+
             courses.add(course);
             student.setCourses(courses);
             userRepository.save(student);

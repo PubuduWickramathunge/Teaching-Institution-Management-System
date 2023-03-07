@@ -30,7 +30,7 @@ public class EnrollmentController {
     }
 
     @PostMapping("/{courseId}")
-    public ResponseEntity<?> enroll(@PathVariable("courseId") Long courseId, Authentication authentication) {
+    public ResponseEntity<?> enroll(@PathVariable("courseId") Long courseId, Authentication authentication) throws Exception {
 
         enrollmentService.enrollStudent(courseId, authentication.getName());
         return ResponseEntity.ok("Student enrolled successfully.");
