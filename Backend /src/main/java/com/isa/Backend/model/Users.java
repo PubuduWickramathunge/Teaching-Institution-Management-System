@@ -45,6 +45,7 @@ public class Users implements UserDetails {
     private Role role;
 
     @ManyToMany( cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinTable(
             name = "enrollment",
             joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
