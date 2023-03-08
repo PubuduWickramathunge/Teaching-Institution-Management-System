@@ -8,6 +8,9 @@ import Profile from "./components/Profile";
 import AddManager from "./components/AddManager";
 import ForbiddenPage from "./components/forbidden";
 import AddCourse from "./components/course/AddCourse";
+import CourseViewStudent from "./components/course/ViewCourseStudent";
+import AllCoursesPage from "./components/course/ViewAllCourses";
+import ViewClassTeacher from "./components/course/ViewClassTeacher";
 
 function RouterComponent() {
   return (
@@ -22,6 +25,9 @@ function RouterComponent() {
       <Route path="/add-manager" element={<AddManager />} />
       <Route path="/forbidden" element={<ForbiddenPage />} />
       <Route path="/add-course" element={<AddCourse />} />
+      <Route path="/courses/:id" element={<CourseViewStudent />} />
+      <Route path="/all-courses" element={<AllCoursesPage />} />
+      <Route path="/class/:id" element={<ViewClassTeacher />} />
     </Routes>
   );
 }

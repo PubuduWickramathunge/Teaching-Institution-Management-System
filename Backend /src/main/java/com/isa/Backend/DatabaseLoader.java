@@ -103,6 +103,24 @@ public class DatabaseLoader {
                         Role.TEACHER
                 )
         );
+        authenticationService.register(
+                new RegisterRequest(
+                        "Pmw",
+                        "Pmw",
+                        "Pmw999@gmail.com",
+                        "Pmw999@gmail.com",
+                        Role.STUDENT
+                )
+        );
+        authenticationService.register(
+                new RegisterRequest(
+                        "Pmw",
+                        "Pmw",
+                        "Pmw1999@gmail.com",
+                        "Pmw1999@gmail.com",
+                        Role.TEACHER
+                )
+        );
 
         authenticationService.register(
                 new RegisterRequest(

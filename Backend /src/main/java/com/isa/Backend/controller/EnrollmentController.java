@@ -30,7 +30,7 @@ public class EnrollmentController {
     }
 
     @PostMapping("/{courseId}")
-    public ResponseEntity<?> enroll(@PathVariable("courseId") Long courseId, Authentication authentication) {
+    public ResponseEntity<?> enroll(@PathVariable("courseId") Long courseId, Authentication authentication) throws Exception {
 
         enrollmentService.enrollStudent(courseId, authentication.getName());
         return ResponseEntity.ok("Student enrolled successfully.");
@@ -42,15 +42,17 @@ public class EnrollmentController {
         return ResponseEntity.ok("Student unenrolled successfully.");
     }
 
-    @GetMapping("/courses")
-    public ResponseEntity<Set<Course>> getCourses(Authentication authentication) {
-        Optional<Users> studentOptional = userRepository.findByEmail(authentication.getName());
+
+    @GetMapping("/{studentId}/courses")
+    public ResponseEntity<Set<Course>> getCourses(@PathVariable Long studentId) {
+        Optional<Users> studentOptional = userRepository.findById(studentId);
         if (studentOptional.isPresent()) {
             Set<Course> courses = studentOptional.get().getCourses();
             return ResponseEntity.ok(courses);
         }
         return ResponseEntity.notFound().build();
     }
+
 
     @GetMapping("/{courseId}")
     public ResponseEntity<Course> getCourseById(@PathVariable("courseId") Long courseId) {
@@ -61,7 +63,6 @@ public class EnrollmentController {
         }
         return ResponseEntity.notFound().build();
     }
-
 
 
 }

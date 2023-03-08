@@ -1,7 +1,6 @@
 package com.isa.Backend.config;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.isa.Backend.repository.CourseRepository;
 import com.isa.Backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +20,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfig {
 
     private final UserRepository userRepository;
-    private final CourseRepository courseRepository;
 
 
     @Bean

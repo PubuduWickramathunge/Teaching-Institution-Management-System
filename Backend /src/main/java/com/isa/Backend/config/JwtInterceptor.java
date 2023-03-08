@@ -10,7 +10,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Service
 @Slf4j
@@ -27,7 +26,7 @@ public class JwtInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         try {
             String token = request.getHeader("Authorization");
             if (token == null || !token.startsWith("Bearer ")) {
@@ -42,9 +41,9 @@ public class JwtInterceptor implements HandlerInterceptor {
 
             userRequestScopedBean.setJwt(token);
             return true;
-        }  catch (Exception e) {
-        log.error("JwtInterceptor - Exception : {} ", e.getMessage());
-        throw new JwtInterceptorException("Error in JwtInterceptor", e);
+        } catch (Exception e) {
+            log.error("JwtInterceptor - Exception : {} ", e.getMessage());
+            throw new JwtInterceptorException("Error in JwtInterceptor", e);
         }
     }
 }

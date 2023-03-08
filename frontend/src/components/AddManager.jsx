@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, Input, Radio, Typography, Divider, message } from "antd";
+import { Form, Button, Input, Typography, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { validationRules } from "./signup/ValidationSignUp";
 import { Layout } from "antd";
@@ -10,7 +10,7 @@ import "./login/style.css";
 
 const AddManager = () => {
   const [form] = Form.useForm();
-  const [id, setId] = useState("");
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -84,7 +84,6 @@ const AddManager = () => {
         <div className="form">
           <header className="normal-form">
             <div className="form-container">
-              
               <Form
                 autoComplete="off"
                 labelCol={{ span: 8 }}
@@ -95,7 +94,7 @@ const AddManager = () => {
                 >
                   Add Manager
                 </Typography.Title>
-                
+
                 {errorMessage && (
                   <div className="error-message">
                     <p>{errorMessage}</p>

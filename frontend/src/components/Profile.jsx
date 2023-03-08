@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Input, Row, Col, Layout, Card, Typography } from "antd";
+import { Avatar, Layout, Card, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./profile/profile.css";
 
