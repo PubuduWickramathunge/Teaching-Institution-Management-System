@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Table, Tag, Space, Layout, Button } from "antd";
+import { Table, Layout, Button } from "antd";
 import TopNavBar from "../NavBar";
 import { Link, useNavigate } from "react-router-dom";
 import "./dashboard.css";
-import jwt_decode from "jwt-decode";
+import { isTokenExpired } from "../../utils/TokenUtils";
+import CourseTableSwitcher from "../course/admin/CourseTableSwitcher";
 
 const columns = [
   {
@@ -66,12 +67,6 @@ const ManagementDashboard = () => {
     }
   }, [token, navigate]);
 
-  const isTokenExpired = (token) => {
-    const decodedToken = jwt_decode(token);
-    const currentTime = Date.now() / 1000;
-    return decodedToken.exp < currentTime;
-  };
-
   const handleStudentButtonClick = () => {
     setSelected("students");
   };
@@ -87,7 +82,6 @@ const ManagementDashboard = () => {
   const handleUserButtonClick = () => {
     setSelected("users");
   };
-
   let dataSource;
   let tableTitle;
   if (selected === "students") {
@@ -111,6 +105,9 @@ const ManagementDashboard = () => {
       </Layout.Header>
       <Layout.Content>
         <div style={{ padding: " 50px" }}>
+          <div>
+            <CourseTableSwitcher />
+          </div>
           <Button
             className="home-button"
             type="primary"
@@ -143,16 +140,15 @@ const ManagementDashboard = () => {
           >
             View All Users
           </Button>
+
           <Link to="/add-manager">
             <Button className="home-button" type="default" size="large">
               <i>Add New Manager</i>
             </Button>
           </Link>
-          <Link to="/add-course">
-            <Button className="home-button" type="default" size="large">
-              <i>Add New course</i>
-            </Button>
-          </Link>
+
+          <br />
+          <br />
           <h2 style={{ color: "#1eb2a6" }}>{tableTitle}</h2>
           <Table dataSource={dataSource} columns={columns} />
         </div>
