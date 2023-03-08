@@ -1,45 +1,54 @@
 import React, { useEffect, useState } from "react";
-import { Table, Tag, Space, Layout, Card, Alert, Calendar } from "antd";
-import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
+import { Table, Layout, Card } from "antd";
+
+import { isTokenExpired } from "../../utils/TokenUtils";
 
 import "./Dashboard";
 import "./dashboard.css";
 
 import TopNavBar from "../NavBar";
+import ClassCard from "./ClassCard";
 
 const columns = [
   {
-    title: "First Name",
-    dataIndex: "firstName",
-    key: "firstName",
+    title: "Course",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: "Last Name",
-    dataIndex: "lastName",
-    key: "lastName",
+    title: "Description",
+    dataIndex: "description",
+    key: "description",
   },
   {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
-  },
-  {
-    title: "Subject",
-    dataIndex: "null",
-    key: "null",
+    title: "Materials",
+    dataIndex: "",
+    key: "",
   },
 ];
 
 const TeacherDashboard = () => {
-  const [value, setValue] = useState(() => dayjs("2017-01-25"));
-  const [selectedValue, setSelectedValue] = useState(() => dayjs("2017-01-25"));
-  const onSelect = (newValue) => {
-    setValue(newValue);
-    setSelectedValue(newValue);
-  };
-  const onPanelChange = (newValue) => {
-    setValue(newValue);
-  };
+  const [classes, setClasses] = useState([]);
+
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const teacherId = localStorage.getItem("id");
+
+  useEffect(() => {
+    console.log("teacherId:", teacherId);
+    if (!token || isTokenExpired(token)) {
+      navigate("/login");
+    }
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    fetch(`http://localhost:8080/teachers/${teacherId}/courses`, options)
+      .then((response) => response.json())
+      .then((data) => setClasses(data));
+  }, [teacherId, navigate, token]);
 
   return (
     <Layout>
@@ -47,39 +56,33 @@ const TeacherDashboard = () => {
         <TopNavBar />
       </Layout.Header>
       <Layout.Content>
-        <div style={{ padding: "50px" }}>
+        <div className="dashboard" style={{ padding: "50px" }}>
+          <br />
+          <br />
+          <h2 style={{ color: "#1eb2a6" }}>My Classes</h2>
+          <div className="dashboard-cards-container">
+            {classes.map((course) => (
+              <ClassCard key={course.id} course={course} />
+            ))}
+          </div>
+          <br />
+          <br />
+          <h2 style={{ color: "#1eb2a6" }}>Overview</h2>
           <Table
             style={{ borderBlockEndWidth: "5px", marginTop: 50 }}
-            dataSource={""}
+            dataSource={classes.map((classes) => ({
+              ...classes,
+            }))}
             columns={columns}
+            rowKey="id"
           />
-          <h2 style={{ color: "#1eb2a6" }}>Overview</h2>
+          <br />
           <div className="dashboard-cards-container">
-            <Card title="Subjects" className="dashboard-card">
-              <p className="dashboard-card-data">
-                Pure Maths <br /> Applied Maths
-              </p>
-              <p className="dashboard-card-label">subjects</p>
-            </Card>
-            <Card title="Classes" className="dashboard-card">
-              <p className="dashboard-card-data">4</p>
-              <p className="dashboard-card-label">total classes</p>
-            </Card>
-            <Card title="Assistant" className="dashboard-card">
-              <p className="dashboard-card-data">Dr. Nihal</p>
-              <p className="dashboard-card-label">Subject - Pure Maths</p>
+            <Card title="Courses" className="dashboard-card">
+              <p className="dashboard-card-data">{classes.length}</p>
+              <p className="dashboard-card-label">Total Classes</p>
             </Card>
           </div>
-          <Alert
-            message={`You selected date: ${selectedValue?.format(
-              "YYYY-MM-DD"
-            )}`}
-          />
-          <Calendar
-            value={value}
-            onSelect={onSelect}
-            onPanelChange={onPanelChange}
-          />
         </div>
       </Layout.Content>
     </Layout>
