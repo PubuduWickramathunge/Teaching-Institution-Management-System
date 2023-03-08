@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, Button, Input, Radio, Typography, Divider, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { validationRules } from "./ValidationSignUp";
@@ -10,7 +10,6 @@ import "../login/style.css";
 
 const UserRegister = () => {
   const [form] = Form.useForm();
-  const [id, setId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");

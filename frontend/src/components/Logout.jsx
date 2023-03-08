@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, message } from "antd";
+import { Button, message, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -30,18 +30,26 @@ function LogoutButton() {
       
     }
   };
-
+  const handleConfirm = () => {
+    Modal.confirm({
+      title: "Are you sure you want to logout?",
+      onOk: handleLogout,
+      onCancel: () => {},
+    });
+  };
   return (
     <>
       {loggedOut ? (
         <p>You have successfully logged out</p>
       ) : (
-        <Button danger onClick={handleLogout}>
-          Logout
-        </Button>
+        <Button type="default" style={{color: "red",
+                  border: '1px solid red'}}  onClick={handleConfirm}>
+    Log Out
+  </Button>
       )}
     </>
   );
+  
 }
 
 export default LogoutButton;
