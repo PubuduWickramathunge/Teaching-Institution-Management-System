@@ -1,19 +1,11 @@
 package com.isa.Backend.service;
 
 import com.isa.Backend.model.Course;
-import com.isa.Backend.model.Enrollment;
-import com.isa.Backend.model.EnrollmentId;
 import com.isa.Backend.model.Users;
 import com.isa.Backend.repository.CourseRepository;
-import com.isa.Backend.repository.EnrollmentRepository;
 import com.isa.Backend.repository.UserRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.persistence.EmbeddedId;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -22,13 +14,10 @@ public class EnrollmentService {
 
     private final CourseRepository courseRepository;
 
-    private final EnrollmentRepository enrollmentRepository;
-
     private final UserRepository userRepository;
 
-    public EnrollmentService(CourseRepository courseRepository, EnrollmentRepository enrollmentRepository, UserRepository userRepository) {
+    public EnrollmentService(CourseRepository courseRepository, UserRepository userRepository) {
         this.courseRepository = courseRepository;
-        this.enrollmentRepository = enrollmentRepository;
         this.userRepository = userRepository;
     }
 
@@ -64,7 +53,6 @@ public class EnrollmentService {
             userRepository.save(student);
         }
     }
-
 
 
 }

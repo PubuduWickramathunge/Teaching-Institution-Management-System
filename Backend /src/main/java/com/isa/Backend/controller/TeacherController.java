@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -34,6 +33,7 @@ public class TeacherController {
         return courseRepository.findByIdAndTeacherId(courseId, teacherId)
                 .orElseThrow(() -> new ResourceNotFoundException("Course not found"));
     }
+
     @GetMapping("/{courseId}/students")
     public Set<Users> getStudentsInCourse(@PathVariable Long teacherId, @PathVariable Long courseId) {
         Course course = courseRepository.findByIdAndTeacherId(courseId, teacherId)

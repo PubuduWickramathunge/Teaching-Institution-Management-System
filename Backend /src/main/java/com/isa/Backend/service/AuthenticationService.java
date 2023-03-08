@@ -5,7 +5,6 @@ import com.isa.Backend.dto.AuthenticationResponse;
 import com.isa.Backend.dto.RegisterRequest;
 import com.isa.Backend.exception.UserAlreadyExistsException;
 import com.isa.Backend.exception.UserNotFoundException;
-import com.isa.Backend.model.Role;
 import com.isa.Backend.model.Users;
 import com.isa.Backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +14,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -66,13 +64,6 @@ public class AuthenticationService {
         return Optional.of(users);
     }
 
-    public List<Users> getAllUsersWithRole(Role role) {
-        return userRepository.findByRole(String.valueOf(role));
-    }
 
-
-    public List<Users> getAllUsers() {
-        return userRepository.findAll();
-    }
 }
 
