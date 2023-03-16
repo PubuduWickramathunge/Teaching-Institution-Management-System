@@ -9,7 +9,7 @@ const ForbiddenPage = () => {
       title="403"
       subTitle="Sorry, you are not authorized to access this page."
       extra={
-        <Link to="/home">
+        <Link to="/dashboard">
           <Button type="primary">Back Home</Button>
         </Link>
       }
