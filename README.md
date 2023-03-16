@@ -35,10 +35,10 @@ The application follows the Model-View-Controller (MVC) architecture pattern.
 
 ## Main Functionalities
 
- - Users: Login, Logout, Register
+ - Users: Login, Logout, Register, Dashboard view, Profile...
  - Student: View enrolled courses, search courses, enroll and unenroll from courses...
- - Teacher: View assigned classes, view students, provide materials.
- - Manager: view reports on all user and course data, add managers, add courses and assign teachers to courses.
+ - Teacher: View assigned classes, view students, provide materials...
+ - Manager: view reports on all user and course data, add managers, add courses and assign teachers to courses...
 
 ## Setup and Deployment
 
