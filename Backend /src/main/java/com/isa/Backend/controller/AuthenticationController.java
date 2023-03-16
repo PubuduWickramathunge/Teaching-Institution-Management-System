@@ -4,6 +4,7 @@ import com.isa.Backend.config.UserRequestScopedBean;
 import com.isa.Backend.dto.AuthenticationRequest;
 import com.isa.Backend.dto.AuthenticationResponse;
 import com.isa.Backend.dto.RegisterRequest;
+import com.isa.Backend.dto.RegisterResponse;
 import com.isa.Backend.model.Users;
 import com.isa.Backend.service.AuthenticationService;
 import com.isa.Backend.service.BlackListingService;
@@ -24,13 +25,13 @@ public class AuthenticationController {
     private final UserRequestScopedBean userRequestScopedBean;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest registerRequest) {
         return ResponseEntity.ok(authenticationService.register(registerRequest));
     }
 
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest)  {
         return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
     }
 

@@ -1,5 +1,7 @@
 package com.isa.Backend.service;
 
+import com.isa.Backend.dto.CourseRegRequest;
+import com.isa.Backend.dto.CourseResponse;
 import com.isa.Backend.model.Course;
 import com.isa.Backend.repository.CourseRepository;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,6 +20,11 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
+    public CourseResponse createCourse(CourseRegRequest courseRegRequest) {
+        Course addedCourse = new Course(courseRegRequest.getName(), courseRegRequest.getDescription(), courseRegRequest.getTeacher());
+        Course course = createCourse(addedCourse);
+        return CourseResponse.fromCourse(course);
+    }
 
     public Course createCourse(Course course) {
         try {
@@ -34,5 +41,4 @@ public class CourseService {
     public List<Course> searchCoursesByName(String name) {
         return courseRepository.findByNameContainingIgnoreCase(name);
     }
-
 }
