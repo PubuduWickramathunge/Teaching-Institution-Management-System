@@ -9,7 +9,7 @@ const CourseCard = ({ course }) => {
   return (
     <Link to={`/courses/${course.id}`}>
       <Card title={course.name} className="course-card">
-        <p className="dashboard-card-label">{course.description}</p>
+        {/* <p className="dashboard-card-label">{course.description}</p> */}
         <p className="dashboard-card-label">
           Teacher: {teacherFirstName} {teacherLastName}
         </p>

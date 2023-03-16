@@ -5,6 +5,7 @@ import "./profile/profile.css";
 
 import TopNavBar from "./NavBar";
 import LogoutButton from "./Logout";
+import { isTokenExpired } from "../utils/TokenUtils";
 
 const Profile = () => {
   const firstName = localStorage.getItem("firstName");
@@ -19,6 +20,9 @@ const Profile = () => {
   const fullName = `${firstName} ${lastName}`;
 
   useEffect(() => {
+    if (!token || isTokenExpired(token)) {
+      navigate("/login");
+    }
     if (!token) {
       setAuthenticated(false);
       navigate("/login/");

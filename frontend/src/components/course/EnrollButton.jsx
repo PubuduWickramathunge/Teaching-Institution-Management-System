@@ -18,8 +18,7 @@ const EnrollButton = ({ courseId }) => {
       .catch((error) => {
         console.log(error);
         if (error.response) {
-          const errorMessage = error.response.data.message;
-          message.error(errorMessage);
+          message.error("You have already enrolled in the course.");
         } else {
           message.error("An error occurred while enrolling in the course.");
         }
