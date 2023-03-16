@@ -16,22 +16,14 @@ import java.util.Set;
 @RequestMapping("/enrollment")
 public class EnrollmentController {
 
-
     private final EnrollmentService enrollmentService;
-    private final UserRepository userRepository;
 
-    private final CourseRepository courseRepository;
-
-
-    public EnrollmentController(EnrollmentService enrollmentService, UserRepository userRepository, CourseRepository courseRepository) {
+    public EnrollmentController(EnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
-        this.userRepository = userRepository;
-        this.courseRepository = courseRepository;
     }
 
     @PostMapping("/{courseId}")
     public ResponseEntity<?> enroll(@PathVariable("courseId") Long courseId, Authentication authentication) throws Exception {
-
         enrollmentService.enrollStudent(courseId, authentication.getName());
         return ResponseEntity.ok("Student enrolled successfully.");
     }
@@ -42,27 +34,18 @@ public class EnrollmentController {
         return ResponseEntity.ok("Student unenrolled successfully.");
     }
 
-
     @GetMapping("/{studentId}/courses")
     public ResponseEntity<Set<Course>> getCourses(@PathVariable Long studentId) {
-        Optional<Users> studentOptional = userRepository.findById(studentId);
-        if (studentOptional.isPresent()) {
-            Set<Course> courses = studentOptional.get().getCourses();
-            return ResponseEntity.ok(courses);
-        }
-        return ResponseEntity.notFound().build();
+        Set<Course> courses = enrollmentService.getEnrolledCourses(studentId);
+        return ResponseEntity.ok(courses);
     }
-
 
     @GetMapping("/{courseId}")
     public ResponseEntity<Course> getCourseById(@PathVariable("courseId") Long courseId) {
-        Optional<Course> courseOptional = courseRepository.findById(courseId);
-        if (courseOptional.isPresent()) {
-            Course course = courseOptional.get();
+        Course course = enrollmentService.getCourseById(courseId);
+        if (course != null) {
             return ResponseEntity.ok(course);
         }
         return ResponseEntity.notFound().build();
     }
-
-
 }

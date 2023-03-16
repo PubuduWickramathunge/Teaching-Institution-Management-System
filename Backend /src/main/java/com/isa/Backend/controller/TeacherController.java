@@ -1,9 +1,8 @@
 package com.isa.Backend.controller;
 
-import com.isa.Backend.exception.ResourceNotFoundException;
 import com.isa.Backend.model.Course;
 import com.isa.Backend.model.Users;
-import com.isa.Backend.repository.CourseRepository;
+import com.isa.Backend.service.TeacherService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,29 +15,24 @@ import java.util.Set;
 @RequestMapping("/teachers/{teacherId}")
 public class TeacherController {
 
+    private final TeacherService teacherService;
 
-    private final CourseRepository courseRepository;
-
-    public TeacherController(CourseRepository courseRepository) {
-        this.courseRepository = courseRepository;
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
     }
 
     @GetMapping("/courses")
     public List<Course> getCoursesOfTeacher(@PathVariable Long teacherId) {
-        return courseRepository.findByTeacherId(teacherId);
+        return teacherService.getCoursesOfTeacher(teacherId);
     }
 
     @GetMapping("/{courseId}")
     public Course getCourseById(@PathVariable Long teacherId, @PathVariable Long courseId) {
-        return courseRepository.findByIdAndTeacherId(courseId, teacherId)
-                .orElseThrow(() -> new ResourceNotFoundException("Course not found"));
+        return teacherService.getCourseById(teacherId, courseId);
     }
 
     @GetMapping("/{courseId}/students")
     public Set<Users> getStudentsInCourse(@PathVariable Long teacherId, @PathVariable Long courseId) {
-        Course course = courseRepository.findByIdAndTeacherId(courseId, teacherId)
-                .orElseThrow(() -> new ResourceNotFoundException("Course not found"));
-        return course.getStudents();
+        return teacherService.getStudentsInCourse(teacherId, courseId);
     }
 }
-
